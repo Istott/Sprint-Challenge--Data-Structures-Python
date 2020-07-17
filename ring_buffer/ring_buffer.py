@@ -4,22 +4,33 @@ class RingBuffer:
         self.data = []
 
     def append(self, item):
-        self.data.append(item)
+        if len(self.data) < self.capacity:
+            self.data.append(item)
 
         if len(self.data) == self.capacity:
-            self.cur = 0
-            self.__class__ = RingBufferFull
+            self.data.remove(self.data[0])
+            self.data.append(item)
 
+        if len(self.data) > self.capacity:
+            self.data.remove(self.data[0])
+            self.data.insert(0, item)
+        
+        # if len(self.data) > self.capacity:
+        #     self.data.remove(self.data[5])
+        #     self.data.insert(0, item)
+            
     def get(self):
         return self.data
 
-class RingBufferFull:
-    def __init__(self, n):
-        raise 'you should use RingBuffer'
+# class RingBufferFull:
+#     def __init__(self, n):
+#         raise 'you should use RingBuffer'
 
-    def append(self, item):
-        self.data[self.cur] = item
-        self.cur = (self.cur + 1) % self.capacity
+#     def append(self, item):
+#         self.data[self.cur] = item
+#         self.cur = (self.cur + 1) % self.capacity
     
-    def get(self):
-        return self.data[self.cur:] + self.data[:self.cur]
+#     def get(self):
+#         return self.data[self.cur:] + self.data[:self.cur]
+
+
