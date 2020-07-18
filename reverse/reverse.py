@@ -41,18 +41,23 @@ class LinkedList:
     def reverse_list(self, node, prev):
         # take the current list and reverse the order.
         # remove the head and
-        prev = self.node.get_next()
+        # prev = self.head.get_next(self)
+        # newList = []
 
-        if node is self.head:
-            self.add_to_head(node.value)
-            return self.reverse_list(node.value, prev)
-        # prev = self.Node.get_next()
+        # if node:
+        #     newList.append(node.value)
+        #     return self.reverse_list(node, prev)
 
-        # if node.get_next() == None:
-        #    self.head = node
-        #    return
-        # self.reverse_list(node.value, prev)
-        # temp = node.get_next()
-        # temp.set_next(node)
-        # node.set_next(None)
-       
+
+        if self.head is None: 
+            return self.head 
+  
+        # Reverse the rest list 
+        rest = self.reverse_list(self.head.get_next(), prev) 
+  
+        # Put first element at the end 
+        self.head.next.next = self.head 
+        self.head.next = None
+  
+        # Fix the header pointer 
+        return rest 

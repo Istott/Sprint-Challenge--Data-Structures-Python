@@ -12,34 +12,10 @@ f.close()
 
 duplicates = []  # Return the list of duplicates in this data structure
 
-class BSTNode:
-    def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
 
-    def contains(self, target):
-        if target == self.value:
-            return True
-        elif target >= self.value:
-            if self.right:
-                return self.right.contains(target)
-            else:
-                return False
-        else:
-            if self.left:
-                return self.left.contains(target)
-            else:
-                return False 
-
-n1 = BSTNode(contains(names_1))
-n2 = BSTNode(names_2)
-
-duplicates.append(n1)
-
-# for name1 in n1:
-#     if name1 == n2:
-#         duplicates.append(name1)
+for n1 in names_1: #my slow computer was running the original in 13secs. this runs in 2.4secs.
+    if n1 in names_2:
+        duplicates.append(n1)
 
 # Replace the nested for loops below with your improvements
 # for name_1 in names_1:
@@ -48,6 +24,8 @@ duplicates.append(n1)
 #             duplicates.append(name_1)
 
 # n1 for n1 in names_1 if n1 in names_2
+
+
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
