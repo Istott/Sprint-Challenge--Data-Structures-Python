@@ -20,14 +20,4 @@ class RingBuffer:
     def get(self):
         return self.data
 
-        # if self.pointer >= 5:
-        #     self.pointer = 0
-
-        # if len(self.data) < self.capacity:
-        #     self.data.append(item)
-        # else:
-        #     if len(self.data) >= self.capacity:
-        #         self.data.remove(self.data[self.pointer])
-        #         self.data.insert(self.pointer, item)
-        #         self.pointer += 1
 
