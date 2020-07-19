@@ -44,14 +44,12 @@ class LinkedList:
 
         if node.next_node is None: 
             self.head = node  
-              
             # Update next to prev node 
             node.next_node = prev 
             return 
           
         # Save node for recursive call 
         next = node.next_node
-  
         # And update next  
         node.next_node = prev 
       

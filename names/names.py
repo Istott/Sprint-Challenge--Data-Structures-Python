@@ -12,10 +12,50 @@ f.close()
 
 duplicates = []  # Return the list of duplicates in this data structure
 
+class BSTNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
 
-for n1 in names_1: #my slow computer was running the original in 13secs. this runs in 2.4secs.
-    if n1 in names_2:
-        duplicates.append(n1)
+    # Insert the given value into the tree
+    def insert(self, value):
+        if value < self.value:
+            if self.left is None:
+                self.left = BSTNode(value)
+            else:
+                self.left.insert(value)
+        else:
+            if self.right is None:
+                self.right = BSTNode(value)
+            else:
+                self.right.insert(value)     
+
+    # Return True if the tree contains the value
+    # False if it does not
+    def contains(self, target):
+        if target == self.value:
+            return True
+        elif target >= self.value:
+            if self.right:
+                return self.right.contains(target)
+            else:
+                return False
+        else:
+            if self.left:
+                return self.left.contains(target)
+            else:
+                return False 
+
+
+tree = BSTNode(names_1[0])
+
+for n1 in names_1:
+    tree.insert(n1)
+
+for n2 in names_2:
+    if tree.contains(n2) == True:
+        duplicates.append(n2) 
 
 # Replace the nested for loops below with your improvements
 # for name_1 in names_1:
